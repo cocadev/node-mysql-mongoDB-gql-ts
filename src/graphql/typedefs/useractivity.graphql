@@ -1,0 +1,15 @@
+type UserActivity {
+    id: ID!
+    userId: Int
+    activityTypeId: String
+    dataSetId: String
+    ownVsRentDataId: String
+}
+
+type Query {
+    getUserActivitys: [UserActivity]
+}
+
+type Mutation {
+    addUserActivity(userId: String!, activityTypeId: String!, dataSetId: String!, ownVsRentDataId: String!): UserActivity
+}

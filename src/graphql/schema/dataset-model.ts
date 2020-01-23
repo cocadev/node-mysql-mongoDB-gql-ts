@@ -6,9 +6,18 @@ const dataSetSchema = new Schema({
     type: String,
     required: true,
   },
-  userId: Number,
-  distanceUnit: Schema.Types.ObjectId,
-  fuelUnit: Schema.Types.ObjectId,
+  userId: {
+    type: Number,
+    required: true,
+  },
+  distanceUnit: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
+  fuelUnit: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
   currency: String,
   countryCode: {
     type: String,
