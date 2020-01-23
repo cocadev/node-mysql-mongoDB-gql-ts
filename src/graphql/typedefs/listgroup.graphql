@@ -3,6 +3,11 @@ type ListGroup {
     groupName: String
 }
 
+type List {
+    _id: ID
+    groupName: String
+}
+
 type Query {
     getListGroups: [ListGroup]
     getListGroup(id: ID!): ListGroup

@@ -1,14 +1,14 @@
-import { Comment } from '../schema/comment-model';
+import { DataSet } from '../schema/dataset-model';
 
 export default {
     Query: {
-        getComments: (_, args) => {
-            return Comment.find({});
+        getDataSets: (_, args) => {
+            return DataSet.find({});
         },
     },
     Mutation: {
-        addComment: (_, args) => {
-            return Comment.create(args)
+        addDataSet: (_, args) => {
+            return DataSet.create(args)
         },
     }
 };
