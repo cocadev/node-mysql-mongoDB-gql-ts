@@ -1,0 +1,14 @@
+type Comment {
+    id: ID!
+    jobID: String
+    userID: String
+    description: String
+}
+
+type Query {
+    getComments: [Comment]
+}
+
+type Mutation {
+    addComment(jobID: String!, userID: String!, description: String!): Comment
+}

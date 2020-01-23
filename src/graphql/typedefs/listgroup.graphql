@@ -1,0 +1,13 @@
+type ListGroup {
+    id: ID!
+    groupName: String
+}
+
+type Query {
+    getListGroups: [ListGroup]
+    getListGroup(id: ID!): ListGroup
+}
+
+type Mutation {
+    addListGroup(groupName:String!): ListGroup
+}
