@@ -5,6 +5,9 @@ export default {
         getUserActivitys: (_, args) => {
             return UserActivity.find({});
         },
+        getUserActivity: (_, args) => {
+            return UserActivity.findById(args.id).populate("DataSet");
+        }
     },
     Mutation: {
         addUserActivity: (_, args) => {

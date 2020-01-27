@@ -1,15 +1,28 @@
 type UserActivity {
     id: ID!
-    userId: Int
+    userId: Int!
     activityTypeId: String
-    dataSetId: String
+    dataSetId: String!
     ownVsRentDataId: String
+    dataSet: UserActivityDataSet
+}
+
+type UserActivityDataSet {
+    id: ID
+    name: String
+    userId: Int
+    distanceUnit: String
+    fuelUnit: String
+    currency: String
+    countryCode: String
+    localRegion: String
 }
 
 type Query {
     getUserActivitys: [UserActivity]
+    getUserActivity(id: ID): UserActivity
 }
 
 type Mutation {
-    addUserActivity(userId: String!, activityTypeId: String!, dataSetId: String!, ownVsRentDataId: String!): UserActivity
+    addUserActivity(userId: Int!, activityTypeId: String, dataSetId: String, ownVsRentDataId: String): UserActivity
 }
