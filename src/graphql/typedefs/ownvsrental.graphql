@@ -1,0 +1,58 @@
+type OwnVsRental {
+    id: ID!
+    commonData: CommonData
+    own: Own
+    rent: Rent
+    createdAt: String
+    updatedAt: String
+}
+
+type Query {
+    _allOwnVsRentalsMeta: Count
+}
+
+type Count {
+    count: Int
+}
+
+type CommonData {
+    userId: Int
+    datasetId: ID
+    vehicleTypeId: ID
+    description: String
+    fuelTypeId: ID
+    workingDays: Int
+    fuelPrice: Int
+    fuelConsumption: Float
+    dailyMileage: Float
+}
+
+type Own {
+    acquisitionValue: Int
+    tyresMileage: Int
+    tyresCost: Int
+    numOfBreakdowns: Int
+    avgBreakdownCost: Int
+    laborCost: Int
+    adminCost: Int
+    insuranceCost: Int
+    maintenanceCost: Int
+    repairsCost: Int
+    roadTaxes: Int
+    depreciationPeriod: Int
+    disposalMethod: ID
+    disposalValue: Int
+}
+
+type Rent {
+    dailyRentalPrice: Int
+    isRentAllInclusive: Boolean
+    isRentalMaintenanceSeparate: Boolean
+    rentalMaintenanceCost: Int
+    isRentalRepairSeparate: Boolean
+    rentalRepairCost: Int
+    isRentalLaborSeparate: Boolean
+    rentalLaborCost: Int
+    isRentalAdminSeparate: Boolean
+    rentalAdminCost: Int
+}

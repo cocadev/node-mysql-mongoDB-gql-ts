@@ -1,0 +1,41 @@
+type Vehicleselecton {
+    id: ID!
+    common: Common
+    typeAorB: String
+    vehicleTypeId: ID
+    description: String
+    fuelTypeId: ID
+    fuelPrice: Int
+    fuelConsumption: Int
+    acquisitionValue: Int
+    maintenanceCost: Int
+    insuranceCost: Int
+    tyresCost: Int
+    repairsCost: Int
+    numOfBreakdowns: Int
+    avgBreakdownCost: Int
+    roadTaxes: Int
+    disposalMethod: ID
+    disposalValue: Int
+    createdAt: String
+    updatedAt: String
+}
+
+type Query {
+    _allVehicleSelectonsMeta: Count
+}
+
+type Common {
+    userId: Int
+    datasetId: ID
+    workingDays: Int
+    dailyMileage: Int
+    tyresMileage: Int
+    adminCosts: Int
+    laborCosts: Int
+    depreciationPeriod: Int
+}
+
+type Count {
+    count: Int
+}

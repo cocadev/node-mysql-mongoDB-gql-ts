@@ -4,6 +4,9 @@ type Query {
     _createdEachMonthDataSetsMeta: CountMonth
     _createdEachWeekDataSetsMeta: CountWeek
     _createdEachDayDataSetsMeta: CountDay
+    _updatedEachMonthDataSetsMeta: CountMonth
+    _updatedEachWeekDataSetsMeta: CountWeek
+    _updatedEachDayDataSetsMeta: CountDay
 
     allDataSets(filter: String): [DataSet]
     dataSetById(id: ID!): DataSet
