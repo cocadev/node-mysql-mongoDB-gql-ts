@@ -74,7 +74,6 @@ export default {
             })
         },
         _createdEachDayDataSetsMeta: (_, args) => {
-
             return new Promise((resolve, reject) => {
                 resolve({
                     day_1: DataSet.find({
