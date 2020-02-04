@@ -26,6 +26,6 @@ const dataSetSchema = new Schema({
   localRegion: String,
   createdAt: Date,
   updatedAt: Date
-},{ timestamps: true });
+},{ timestamps: true, });
 
 export const DataSet = mongoose.model('dataSet', dataSetSchema); 
