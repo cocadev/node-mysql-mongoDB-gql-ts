@@ -5,7 +5,7 @@ type Vehicleselecton {
     vehicleTypeId: ID
     description: String
     fuelTypeId: ID
-    fuelPrice: Int
+    fuelPrice: Float
     fuelConsumption: Int
     acquisitionValue: Int
     maintenanceCost: Int
@@ -22,15 +22,37 @@ type Vehicleselecton {
 }
 
 type Query {
+    allVehicleSelectons(filter: FilterData): [Vehicleselecton]
     _allVehicleSelectonsMeta: Count
     _createdEachMonthVehicleSelectonsMeta: CountMonth
     _createdEachWeekVehicleSelectonsMeta: CountWeek
     _createdEachDayVehicleSelectonsMeta: CountDay
 }
 
+type DataSet {
+    id: ID!
+    name: String
+    userId: Int
+    distanceUnit: String
+    fuelUnit: String
+    currency: String
+    countryCode: String
+    localRegion: String
+    createdAt: String
+    updatedAt: String
+}
+
+input FilterData {
+    countryCode: String
+    localRegion: String
+    startDate: String
+    endDate: String
+    datasetId: String
+}
+
 type Common {
     userId: Int
-    datasetId: ID
+    datasetId: DataSet
     workingDays: Int
     dailyMileage: Int
     tyresMileage: Int

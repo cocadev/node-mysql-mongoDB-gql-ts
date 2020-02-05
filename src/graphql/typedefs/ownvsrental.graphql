@@ -8,10 +8,32 @@ type OwnVsRental {
 }
 
 type Query {
+    allOwnVsRentals(filter: FilterData): [OwnVsRental]
     _allOwnVsRentalsMeta: Count
     _createdEachMonthOwnVsRentalsMeta: CountMonth
     _createdEachWeekOwnVsRentalsMeta: CountWeek
     _createdEachDayOwnVsRentalsMeta: CountDay
+}
+
+input FilterData {
+    countryCode: String
+    localRegion: String
+    startDate: String
+    endDate: String
+    datasetId: String
+}
+
+type DataSet {
+    id: ID!
+    name: String
+    userId: Int
+    distanceUnit: String
+    fuelUnit: String
+    currency: String
+    countryCode: String
+    localRegion: String
+    createdAt: String
+    updatedAt: String
 }
 
 type Count {
@@ -20,7 +42,7 @@ type Count {
 
 type CommonData {
     userId: Int
-    datasetId: ID
+    datasetId: DataSet
     vehicleTypeId: ID
     description: String
     fuelTypeId: ID

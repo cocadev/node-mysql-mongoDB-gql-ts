@@ -8,10 +8,17 @@ type Query {
     _updatedEachWeekDataSetsMeta: CountWeek
     _updatedEachDayDataSetsMeta: CountDay
 
-    allDataSets(filter: String): [DataSet]
+    allDataSets(filter: FilterData): [DataSet]
     dataSetById(id: ID!): DataSet
     dataSetByName(name: String!): DataSet
     
+}
+
+input FilterData {
+    countryCode: String
+    localRegion: String
+    startDate: String
+    endDate: String
 }
 
 type Mutation {

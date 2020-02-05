@@ -21,6 +21,36 @@ date6.setDate(date.getDate() - 6);
 
 export default {
     Query: {
+        allOwnVsRentals: (_, args) => {
+            var startDate = (args.filter && args.filter.startDate) ? args.filter.startDate : "2019-01-01"
+            var endDate = (args.filter && args.filter.endDate) ? args.filter.endDate : new Date()
+            return new Promise((resolve, reject) => {
+                OwnVsRental
+                    .find({
+                        $and: [
+                            { createdAt: { $gt: startDate } },
+                            { createdAt: { $lt: endDate } },
+                        ]
+                    })
+                    .populate('commonData.datasetId')
+                    .then((entries, err) => {
+                        if (err) {
+                            reject(err)
+                        }
+                        if (args.filter && args.filter.countryCode) {
+                            entries = entries.filter(function (entry) {
+                                return entry.commonData.datasetId.countryCode == args.filter.countryCode;
+                            });
+                        }
+                        if (args.filter && args.filter.localRegion) {
+                            entries = entries.filter(function (entry) {
+                                return entry.commonData.datasetId.localRegion == args.filter.localRegion;
+                            });
+                        }
+                        resolve(entries)
+                    })
+            })
+        },
         _allOwnVsRentalsMeta: (_, args) => {
             return new Promise((resolve, reject) => {
                 OwnVsRental.count().then((res, err) => {

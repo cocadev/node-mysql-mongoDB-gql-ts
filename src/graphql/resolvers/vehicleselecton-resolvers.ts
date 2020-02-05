@@ -20,6 +20,36 @@ date5.setDate(date.getDate() - 5);
 date6.setDate(date.getDate() - 6);
 export default {
     Query: {
+        allVehicleSelectons: (_, args) => {
+            var startDate = (args.filter && args.filter.startDate) ? args.filter.startDate : "2019-01-01"
+            var endDate = (args.filter && args.filter.endDate) ? args.filter.endDate : new Date()
+            return new Promise((resolve, reject) => {
+                VehicleSelecton
+                    .find({
+                        $and: [
+                            { createdAt: { $gt: startDate } },
+                            { createdAt: { $lt: endDate } },
+                        ]
+                    })
+                    .populate('common.datasetId')
+                    .then((entries, err) => {
+                        if (err) {
+                            reject(err)
+                        }
+                        if (args.filter && args.filter.countryCode) {
+                            entries = entries.filter(function (entry) {
+                                return entry.common.datasetId.countryCode == args.filter.countryCode;
+                            });
+                        }
+                        if (args.filter && args.filter.localRegion) {
+                            entries = entries.filter(function (entry) {
+                                return entry.common.datasetId.localRegion == args.filter.localRegion;
+                            });
+                        }
+                        resolve(entries)
+                    })
+            })
+        },
         _allVehicleSelectonsMeta: (_, args) => {
             return new Promise((resolve, reject) => {
                 VehicleSelecton.count().then((res, err) => {
@@ -51,11 +81,11 @@ export default {
         _createdEachWeekVehicleSelectonsMeta: (_, args) => {
             return new Promise((resolve, reject) => {
                 resolve({
-                    week_1: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 1), $lt: UtilService.startTime(year, month, 7-day) } }).count(),
-                    week_2: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 8-day), $lt: UtilService.startTime(year, month, 14-day) } }).count(),
-                    week_3: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 15-day), $lt: UtilService.startTime(year, month, 21-day) } }).count(),
-                    week_4: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 22-day), $lt: UtilService.startTime(year, month, 28-day) } }).count(),
-                    week_5: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 29-day), $lt: UtilService.startTime(year, month, 35-day) } }).count(),
+                    week_1: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 1), $lt: UtilService.startTime(year, month, 7 - day) } }).count(),
+                    week_2: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 8 - day), $lt: UtilService.startTime(year, month, 14 - day) } }).count(),
+                    week_3: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 15 - day), $lt: UtilService.startTime(year, month, 21 - day) } }).count(),
+                    week_4: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 22 - day), $lt: UtilService.startTime(year, month, 28 - day) } }).count(),
+                    week_5: VehicleSelecton.find({ createdAt: { $gt: UtilService.startTime(year, month, 29 - day), $lt: UtilService.startTime(year, month, 35 - day) } }).count(),
                 })
             })
         },

@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const ownVsRentalSchema = new Schema({
   commonData: {
     userId: Number,
-    datasetId: Schema.Types.ObjectId,
+    datasetId: {type: Schema.Types.ObjectId, ref: 'dataSet'},
     vehicleTypeId: Schema.Types.ObjectId,
     description: String,
     fuelTypeId: Schema.Types.ObjectId,

@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const vehicleSelectonSchema = new Schema({
   common: {
     userId: Number,
-    datasetId: Schema.Types.ObjectId,
+    datasetId: {type: Schema.Types.ObjectId, ref: 'dataSet'},
     workingDays: Number,
     dailyMileage: Number,
     tyresMileage: Number,

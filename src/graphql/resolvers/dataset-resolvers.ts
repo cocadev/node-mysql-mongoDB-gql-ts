@@ -23,10 +23,17 @@ date6.setDate(date.getDate() - 6);
 export default {
     Query: {
         allDataSets: (_, args) => {
+            var startDate = args.filter.startDate ? args.filter.startDate : "2019-01-01"
+            var endDate = args.filter.endDate ? args.filter.endDate : new Date()
             return new Promise((resolve, reject) => {
-                DataSet.find({
-                    name: { '$regex': new RegExp(args.filter) },
-                }).then((res, err) => {
+                DataSet
+                .find({$and: [
+                    {countryCode: { '$regex': new RegExp(args.filter.countryCode) }}, 
+                    {localRegion: { '$regex': new RegExp(args.filter.localRegion) }},
+                    {createdAt: {$gt: startDate }},
+                    {createdAt: {$lt: endDate }},
+                ]})
+                .then((res, err) => {
                     if (err) {
                         reject(err)
                     }
@@ -65,11 +72,11 @@ export default {
         _createdEachWeekDataSetsMeta: (_, args) => {
             return new Promise((resolve, reject) => {
                 resolve({
-                    week_1: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 1), $lt: UtilService.startTime(year, month, 7-day) } }).count(),
-                    week_2: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 8-day), $lt: UtilService.startTime(year, month, 14-day) } }).count(),
-                    week_3: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 15-day), $lt: UtilService.startTime(year, month, 21-day) } }).count(),
-                    week_4: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 22-day), $lt: UtilService.startTime(year, month, 28-day) } }).count(),
-                    week_5: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 29-day), $lt: UtilService.startTime(year, month, 35-day) } }).count(),
+                    week_1: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 1), $lt: UtilService.startTime(year, month, 7 - day) } }).count(),
+                    week_2: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 8 - day), $lt: UtilService.startTime(year, month, 14 - day) } }).count(),
+                    week_3: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 15 - day), $lt: UtilService.startTime(year, month, 21 - day) } }).count(),
+                    week_4: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 22 - day), $lt: UtilService.startTime(year, month, 28 - day) } }).count(),
+                    week_5: DataSet.find({ createdAt: { $gt: UtilService.startTime(year, month, 29 - day), $lt: UtilService.startTime(year, month, 35 - day) } }).count(),
                 })
             })
         },
@@ -142,11 +149,11 @@ export default {
         _updatedEachWeekDataSetsMeta: (_, args) => {
             return new Promise((resolve, reject) => {
                 resolve({
-                    week_1: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 1), $lt: UtilService.startTime(year, month, 7-day) } }).count(),
-                    week_2: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 8-day), $lt: UtilService.startTime(year, month, 14-day) } }).count(),
-                    week_3: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 15-day), $lt: UtilService.startTime(year, month, 21-day) } }).count(),
-                    week_4: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 22-day), $lt: UtilService.startTime(year, month, 28-day) } }).count(),
-                    week_5: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 29-day), $lt: UtilService.startTime(year, month, 35-day) } }).count(),
+                    week_1: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 1), $lt: UtilService.startTime(year, month, 7 - day) } }).count(),
+                    week_2: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 8 - day), $lt: UtilService.startTime(year, month, 14 - day) } }).count(),
+                    week_3: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 15 - day), $lt: UtilService.startTime(year, month, 21 - day) } }).count(),
+                    week_4: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 22 - day), $lt: UtilService.startTime(year, month, 28 - day) } }).count(),
+                    week_5: DataSet.find({ updatedAt: { $gt: UtilService.startTime(year, month, 29 - day), $lt: UtilService.startTime(year, month, 35 - day) } }).count(),
                 })
             })
         },
