@@ -5,8 +5,13 @@ type User {
 }
 
 type Query {
+    _allUsersMeta: Count
     getUsers: [User]
     getUser(id: ID!): User
+}
+
+type Count {
+    count: Int
 }
 
 type Mutation {

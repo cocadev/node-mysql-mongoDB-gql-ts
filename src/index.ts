@@ -3,6 +3,7 @@ import { typeDefs } from './graphql/typedefs';
 import { resolvers } from './graphql/resolvers';
 
 import './datasources/config';
+import './datasources/mysqlDB';
 
 const server = new ApolloServer({
     typeDefs: gql`

@@ -1,31 +1,17 @@
-import { User } from '../schema/user-model';
+import {db} from '../../datasources/mysqlDB';
+const User = db.user;
 
 export default {
     Query: {
-        getUsers: (_, args) => {
-            return User.find({});
-        },
-        getUser: (_, args) => {
-            return User.findById(args.id);
-        }
-    },
-    Mutation: {
-        addUser: (_, args) => {
-            return User.create(args)
-        },
-        updateUser: (_, args) => {
-            if (!args.id) return;
-            return User.findOneAndUpdate({ _id: args.id },
-                {
-                    $set: {
-                        userName: args.userName,
-                        email: args.email,
+        _allUsersMeta: (_, args) => {               
+            return new Promise((resolve, reject) => {
+                User.count().then((res, err) => {
+                    if (err) {
+                        reject(err)
                     }
-                }, { new: true },
-            );
+                    resolve({ count: res })
+                })
+            })
         },
-        deleteUser: (_, args) => {
-            return User.findOneAndDelete({ _id: args.id });
-        },
-    }
+    },
 };

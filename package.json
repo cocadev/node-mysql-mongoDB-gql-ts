@@ -13,9 +13,18 @@
     "start:debug": "ndb ts-node src/index.ts",
     "start:dev": "ts-node src/index.ts"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
+  "keywords": [
+    "Nodejs",
+    "Express",
+    "RestAPI",
+    "Sequelize",
+    "Download-File",
+    "MySQL",
+    "Authentication",
+    "JWT"
+  ],
   "dependencies": {
     "apollo-datasource": "^0.6.1",
     "apollo-server": "^2.7.2",
@@ -29,6 +38,8 @@
     "mongo-join-query": "^1.0.2",
     "mongoose": "^5.8.9",
     "morgan": "^1.9.1",
+    "sequelize": "^5.16.0",
+    "mysql2": "^1.5.3",
     "tracer": "^1.0.2"
   },
   "devDependencies": {

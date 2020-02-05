@@ -1,22 +1,22 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+// const mongoose = require('mongoose');
+// const { Schema } = mongoose;
 
-const userSchema = new Schema({
-  userName: {
-    type: String,
-    trim: true,
-    lowercase: true,
-    required: true,
-    maxlength: 6,
-    minlength: 3,
-  },
-  email: {
-      type: String,
-      lowercase: true,
-      require: true,
-      unique: true,
-      dropDups: true,
-  }
-});
+// const userSchema = new Schema({
+//   full_name: String,
+//   email: String
+// });
 
-export const User = mongoose.model('user', userSchema); 
+// export const User = mongoose.model('ur_user', userSchema); 
+
+export default (sequelize, Sequelize) => {
+  const User = sequelize.define('ur_users', {
+    street: {
+      type: Sequelize.STRING
+    },
+    phone: {
+      type: Sequelize.STRING
+    }
+  });
+  
+  return User;
+}
