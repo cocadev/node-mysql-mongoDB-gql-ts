@@ -2,8 +2,13 @@ import {db} from '../../datasources/mysqlDB';
 import {Op} from 'sequelize';
 import UtilService from '../../datasources/utils';
 import { UserActivity } from '../schema/useractivity-model';
+import { DataSet } from '../schema/dataset-model';
+import { VehicleSelecton } from '../schema/vehicleselecton-model';
+import { OwnVsRental } from '../schema/ownvsrental-model';
 
 const User = db.user;
+const Company = db.company;
+
 var year = new Date().getFullYear();
 var month = new Date().getMonth();
 var day = new Date(year, month, 1).getDay();
@@ -24,6 +29,35 @@ date6.setDate(date.getDate() - 6);
 
 export default {
     Query: {
+        _allUsers: (_, args) => {
+            return new Promise((resolve, reject) => {
+                User
+                .findAll({
+                    attributes: ['id', 'full_name'],
+                    include: {
+                        model: Company,
+                        where: { id: db.Sequelize.col('ur_users.company_id') },
+                        attributes: ['name', 'id']
+                    }
+                })
+                .then(async (entries, err) => {
+                    const result = await Promise.all(entries.map(async (entry, index):Promise<any>=>{
+                        entry.company = entry.ur_company.name
+                        entry.numberOfDatasets = DataSet.where({ userId: entry.id }).count({})
+                        entry.numberOfVehicleComparisonRecords = VehicleSelecton.where({ "common.userId": entry.id }).count({})
+                        entry.numberOfOwnVsRentRecords = OwnVsRental.where({ "commonData.userId": entry.id }).count({})
+                        const firstActivityDate = await UserActivity.where({ "userId": entry.id }).sort({ updatedAt: 1 }).limit(1);
+                        const lastActivityDate = await UserActivity.where({ "userId": entry.id }).sort({ updatedAt: -1 }).limit(1);
+
+                        entry.firstActivityDate = firstActivityDate[0] && firstActivityDate[0].updatedAt;
+                        entry.lastActivityDate = lastActivityDate[0] && lastActivityDate[0].updatedAt;
+
+                        return entry;
+                    }));
+                    resolve(result)
+                })
+            })
+        },
         _allUsersMeta: (_, args) => {
             var startDate = (args.filter && args.filter.startDate) ? args.filter.startDate : "2016-01-01"
             return new Promise((resolve, reject) => {

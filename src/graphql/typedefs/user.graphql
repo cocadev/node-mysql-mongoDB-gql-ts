@@ -1,11 +1,17 @@
 type User {
-    id: ID!
+    id: Int
     full_name: String
     created_at: String
-    company_id: Int
+    company: String
+    numberOfDatasets: Int
+    numberOfVehicleComparisonRecords: Int
+    numberOfOwnVsRentRecords: Int
+    firstActivityDate: String
+    lastActivityDate: String
 }
 
 type Query {
+    _allUsers(filter: FilterData): [User]
     _allUsersMeta(filter: FilterData): Count
     _createdEachMonthUsersMeta(filter: FilterData): CountMonth
     _createdEachWeekUsersMeta(filter: FilterData): CountWeek

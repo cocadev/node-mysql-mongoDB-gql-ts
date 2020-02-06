@@ -377,7 +377,17 @@ export default {
             })
         },
         _allUserActivity: (_, args) => {
-            return UserActivity.find();
+            return new Promise((resolve, reject) => {
+                UserActivity
+                .find()
+                .then((res, err) => {
+                    console.log('****************&******************', res)
+                    if (err) {
+                        reject(err)
+                    }
+                    resolve(res)
+                });
+            })
         },
     },
 };

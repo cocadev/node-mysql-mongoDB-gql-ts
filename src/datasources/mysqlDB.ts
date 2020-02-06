@@ -1,5 +1,6 @@
 import {Sequelize} from 'sequelize';
 import model_user from '../graphql/schema/user-model'
+import model_company from '../graphql/schema/company-model'
 
 const sequelize = new Sequelize("knowledge", 'root', '', {
     host:             "localhost",
@@ -15,12 +16,16 @@ const sequelize = new Sequelize("knowledge", 'root', '', {
 export const db = {
   Sequelize: Sequelize,
   sequelize,
-  user: null
+  user: null,
+  company: null
 };
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = model_user(sequelize, Sequelize);
+db.company = model_company(sequelize, Sequelize);
+
+db.user.belongsTo(db.company, {foreignKey: 'company_id', targetKey: 'id'});
 
 try {
   sequelize.authenticate();
