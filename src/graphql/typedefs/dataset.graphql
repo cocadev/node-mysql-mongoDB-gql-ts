@@ -14,13 +14,6 @@ type Query {
     
 }
 
-input FilterData {
-    countryCode: String
-    localRegion: String
-    startDate: String
-    endDate: String
-}
-
 type Mutation {
     addDataSet(
         name: String!
@@ -44,41 +37,4 @@ type DataSet {
     localRegion: String
     createdAt: String
     updatedAt: String
-}
-
-type Count {
-    count: Int
-}
-
-type CountMonth {
-    current: Int
-    mon_1: Int
-    mon_2: Int
-    mon_3: Int
-    mon_4: Int
-    mon_5: Int
-    mon_6: Int
-    mon_7: Int
-    mon_8: Int
-    mon_9: Int
-    mon_10: Int
-    last: Int
-}
-
-type CountWeek {
-    week_1: Int
-    week_2: Int
-    week_3: Int
-    week_4: Int
-    week_5: Int
-}
-
-type CountDay {
-    day_1: Int
-    day_2: Int
-    day_3: Int
-    day_4: Int
-    day_5: Int
-    day_6: Int
-    day_7: Int
 }

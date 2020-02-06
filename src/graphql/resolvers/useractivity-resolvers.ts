@@ -376,5 +376,8 @@ export default {
                 })
             })
         },
+        _allUserActivity: (_, args) => {
+            return UserActivity.find();
+        },
     },
 };

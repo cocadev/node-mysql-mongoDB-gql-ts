@@ -1,6 +1,7 @@
 import {db} from '../../datasources/mysqlDB';
 import {Op} from 'sequelize';
 import UtilService from '../../datasources/utils';
+import { UserActivity } from '../schema/useractivity-model';
 
 const User = db.user;
 var year = new Date().getFullYear();
@@ -32,7 +33,7 @@ export default {
                         created_at: {
                             [Op.gte]:startDate
                         },
-                        companyId: args.filter.companyId
+                        company_id: args.filter.companyId
                     }
                 })
                 .then((res, err) => {
@@ -52,6 +53,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month, 1),
                                 [Op.lte]:UtilService.endTime(year, month+1, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_1: User.findAndCountAll({
@@ -60,6 +62,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-1, 1),
                                 [Op.lte]:UtilService.endTime(year, month, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_2: User.findAndCountAll({
@@ -68,6 +71,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-2, 1),
                                 [Op.lte]:UtilService.endTime(year, month-1, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_3: User.findAndCountAll({
@@ -76,6 +80,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-3, 1),
                                 [Op.lte]:UtilService.endTime(year, month-2, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_4: User.findAndCountAll({
@@ -84,6 +89,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-4, 1),
                                 [Op.lte]:UtilService.endTime(year, month-3, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_5: User.findAndCountAll({
@@ -92,6 +98,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-5, 1),
                                 [Op.lte]:UtilService.endTime(year, month-4, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_6: User.findAndCountAll({
@@ -100,6 +107,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-6, 1),
                                 [Op.lte]:UtilService.endTime(year, month-5, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_7: User.findAndCountAll({
@@ -108,6 +116,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-7, 1),
                                 [Op.lte]:UtilService.endTime(year, month-6, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_8: User.findAndCountAll({
@@ -116,6 +125,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-8, 1),
                                 [Op.lte]:UtilService.endTime(year, month-7, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_9: User.findAndCountAll({
@@ -124,6 +134,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-9, 1),
                                 [Op.lte]:UtilService.endTime(year, month-8, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     mon_10: User.findAndCountAll({
@@ -132,6 +143,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-10, 1),
                                 [Op.lte]:UtilService.endTime(year, month-9, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     last: User.findAndCountAll({
@@ -140,6 +152,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month-11, 1),
                                 [Op.lte]:UtilService.endTime(year, month-10, 1)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                 })
@@ -154,6 +167,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month, 1),
                                 [Op.lte]:UtilService.endTime(year, month, 7 - day)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     week_2: User.findAndCountAll({
@@ -162,6 +176,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month, 8 - day),
                                 [Op.lte]:UtilService.endTime(year, month, 14 - day)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     week_3: User.findAndCountAll({
@@ -170,6 +185,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month, 15 - day),
                                 [Op.lte]:UtilService.endTime(year, month, 21 - day)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     week_4: User.findAndCountAll({
@@ -178,6 +194,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month, 22 - day),
                                 [Op.lte]:UtilService.endTime(year, month, 28 - day)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     week_5: User.findAndCountAll({
@@ -186,6 +203,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(year, month, 29 - day),
                                 [Op.lte]:UtilService.endTime(year, month, 35 - day)
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                 })
@@ -200,6 +218,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(date.getFullYear(), date.getMonth(), date.getDate()),
                                 [Op.lte]:UtilService.endTime(date.getFullYear(), date.getMonth(), date.getDate())
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     day_2: User.findAndCountAll({
@@ -208,6 +227,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(date1.getFullYear(), date1.getMonth(), date1.getDate()),
                                 [Op.lte]:UtilService.endTime(date1.getFullYear(), date1.getMonth(), date1.getDate())
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     day_3: User.findAndCountAll({
@@ -216,6 +236,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(date2.getFullYear(), date2.getMonth(), date2.getDate()),
                                 [Op.lte]:UtilService.endTime(date2.getFullYear(), date2.getMonth(), date2.getDate())
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     day_4: User.findAndCountAll({
@@ -224,6 +245,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(date3.getFullYear(), date3.getMonth(), date3.getDate()),
                                 [Op.lte]:UtilService.endTime(date3.getFullYear(), date3.getMonth(), date3.getDate())
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     day_5: User.findAndCountAll({
@@ -232,6 +254,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(date4.getFullYear(), date4.getMonth(), date4.getDate()),
                                 [Op.lte]:UtilService.endTime(date4.getFullYear(), date4.getMonth(), date4.getDate())
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     day_6: User.findAndCountAll({
@@ -240,6 +263,7 @@ export default {
                                 [Op.gte]:UtilService.startTime(date5.getFullYear(), date5.getMonth(), date5.getDate()),
                                 [Op.lte]:UtilService.endTime(date5.getFullYear(), date5.getMonth(), date5.getDate())
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
                     day_7: User.findAndCountAll({
@@ -248,8 +272,29 @@ export default {
                                 [Op.gte]:UtilService.startTime(date6.getFullYear(), date6.getMonth(), date6.getDate()),
                                 [Op.lte]:UtilService.endTime(date6.getFullYear(), date6.getMonth(), date6.getDate())
                             },
+                            company_id: args.filter.companyId
                         }
                     }),
+                })
+            })
+        },
+        _activeUsersThisMonthMeta: (_, args) => {
+            return new Promise((resolve, reject) => {
+                UserActivity
+                .find({
+                    where: {
+                        created_at: {
+                            [Op.gte]:UtilService.startTime(year, month, 1),
+                            [Op.lte]:UtilService.startTime(year, month+1, 1)
+                        },
+                        company_id: args.filter.companyId
+                    }
+                })
+                .then((res, err) => {
+                    if (err) {
+                        reject(err)
+                    }
+                    resolve({ count: res.count })
                 })
             })
         },
