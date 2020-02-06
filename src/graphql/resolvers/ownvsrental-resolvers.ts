@@ -22,7 +22,7 @@ date6.setDate(date.getDate() - 6);
 export default {
     Query: {
         allOwnVsRentals: (_, args) => {
-            var startDate = (args.filter && args.filter.startDate) ? args.filter.startDate : "2019-01-01"
+            var startDate = (args.filter && args.filter.startDate) ? args.filter.startDate : "2016-01-01"
             var endDate = (args.filter && args.filter.endDate) ? args.filter.endDate : new Date()
             return new Promise((resolve, reject) => {
                 OwnVsRental

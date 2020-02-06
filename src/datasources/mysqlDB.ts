@@ -13,7 +13,7 @@ const sequelize = new Sequelize("knowledge", 'root', '', {
   });
 
 export const db = {
-  Sequelize,
+  Sequelize: Sequelize,
   sequelize,
   user: null
 };

@@ -5,9 +5,18 @@ type User {
 }
 
 type Query {
-    _allUsersMeta: Count
+    _allUsersMeta(filter: FilterData): Count
+    _createdEachMonthUsersMeta: CountMonth
+    _createdEachWeekUsersMeta: CountWeek
+    _createdEachDayUsersMeta: CountDay
     getUsers: [User]
     getUser(id: ID!): User
+}
+
+input FilterData {
+    startDate: String
+    endDate: String
+    companyId: Int
 }
 
 type Count {
@@ -18,4 +27,37 @@ type Mutation {
     addUser(userName: String!, email: String!): User
     updateUser(id: ID!, userName: String!, email: String!): User
     deleteUser(id: ID!): User
+}
+
+type CountMonth {
+    current: Int
+    mon_1: Int
+    mon_2: Int
+    mon_3: Int
+    mon_4: Int
+    mon_5: Int
+    mon_6: Int
+    mon_7: Int
+    mon_8: Int
+    mon_9: Int
+    mon_10: Int
+    last: Int
+}
+
+type CountWeek {
+    week_1: Int
+    week_2: Int
+    week_3: Int
+    week_4: Int
+    week_5: Int
+}
+
+type CountDay {
+    day_1: Int
+    day_2: Int
+    day_3: Int
+    day_4: Int
+    day_5: Int
+    day_6: Int
+    day_7: Int
 }
