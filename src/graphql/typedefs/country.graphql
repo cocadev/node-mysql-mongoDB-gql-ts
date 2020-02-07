@@ -1,12 +1,14 @@
 input AddCountryInput{
+    id: ID
     name: String
     code: String
 }
 
 type Country {
-    id: ID!
+    id: ID
     name: String
     code: String
+    region: ID
 }
 
 type Query {

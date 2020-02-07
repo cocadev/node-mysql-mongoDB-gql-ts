@@ -33,6 +33,9 @@ export default {
                         ]
                     })
                     .populate('commonData.datasetId')
+                    .populate('commonData.fuelTypeId')
+                    .populate('commonData.vehicleTypeId')
+                    .populate('own.disposalMethod')
                     .then((entries, err) => {
                         if (err) {
                             reject(err)

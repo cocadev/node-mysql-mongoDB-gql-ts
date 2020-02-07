@@ -4,6 +4,8 @@ mongoose.Promise = global.Promise;
 
 const url = 'mongodb://localhost:27017/graphqldb';
 
+require('../graphql/schema/list-model');
+
 mongoose.connect(url, { useNewUrlParser: true });
 mongoose.connection.once('open', () => console.log(`Connected to mongo at ${url}`));
 

@@ -29,19 +29,6 @@ type Query {
     _createdEachDayVehicleSelectonsMeta: CountDay
 }
 
-type DataSet {
-    id: ID!
-    name: String
-    userId: Int
-    distanceUnit: String
-    fuelUnit: String
-    currency: String
-    countryCode: String
-    localRegion: String
-    createdAt: String
-    updatedAt: String
-}
-
 type Common {
     userId: Int
     datasetId: DataSet

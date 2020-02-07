@@ -5,9 +5,9 @@ const ownVsRentalSchema = new Schema({
   commonData: {
     userId: Number,
     datasetId: {type: Schema.Types.ObjectId, ref: 'dataSet'},
-    vehicleTypeId: Schema.Types.ObjectId,
+    vehicleTypeId: {type: Schema.Types.ObjectId, ref: 'list'},
     description: String,
-    fuelTypeId: Schema.Types.ObjectId,
+    fuelTypeId: {type: Schema.Types.ObjectId, ref: 'list'},
     workingDays: Number,
     fuelPrice: Number,
     fuelConsumption: Number,
@@ -26,7 +26,7 @@ const ownVsRentalSchema = new Schema({
     repairsCost: Number,
     roadTaxes: Number,
     depreciationPeriod: Number,
-    disposalMethod: Schema.Types.ObjectId,
+    disposalMethod: {type: Schema.Types.ObjectId, ref: 'list'},
     disposalValue: Number
   },
   rent: {

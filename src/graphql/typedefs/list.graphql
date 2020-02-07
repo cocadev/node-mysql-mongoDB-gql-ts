@@ -1,0 +1,5 @@
+type List {
+    id: ID
+    listTypeId: ID
+    listItem: String
+}

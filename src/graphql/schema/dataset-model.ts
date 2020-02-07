@@ -12,16 +12,14 @@ const dataSetSchema = new Schema({
   },
   distanceUnit: {
     type: Schema.Types.ObjectId,
-    required: true,
   },
   fuelUnit: {
     type: Schema.Types.ObjectId,
-    required: true,
+    ref: "list",
   },
   currency: String,
   countryCode: {
     type: String,
-    required: true,
   },
   localRegion: String,
   createdAt: Date,

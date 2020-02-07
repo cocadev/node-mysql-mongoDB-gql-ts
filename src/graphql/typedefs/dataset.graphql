@@ -31,9 +31,9 @@ type DataSet {
     name: String
     userId: Int
     distanceUnit: String
-    fuelUnit: String
+    fuelUnit: List
     currency: String
-    countryCode: String
+    countryCode: Country
     localRegion: String
     createdAt: String
     updatedAt: String

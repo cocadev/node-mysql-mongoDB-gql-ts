@@ -15,25 +15,12 @@ type Query {
     _createdEachDayOwnVsRentalsMeta: CountDay
 }
 
-type DataSet {
-    id: ID!
-    name: String
-    userId: Int
-    distanceUnit: String
-    fuelUnit: String
-    currency: String
-    countryCode: String
-    localRegion: String
-    createdAt: String
-    updatedAt: String
-}
-
 type CommonData {
     userId: Int
     datasetId: DataSet
-    vehicleTypeId: ID
+    vehicleTypeId: List
     description: String
-    fuelTypeId: ID
+    fuelTypeId: List
     workingDays: Int
     fuelPrice: Int
     fuelConsumption: Float
@@ -53,7 +40,7 @@ type Own {
     repairsCost: Int
     roadTaxes: Int
     depreciationPeriod: Int
-    disposalMethod: ID
+    disposalMethod: List
     disposalValue: Int
 }
 

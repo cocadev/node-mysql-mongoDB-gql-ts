@@ -23,16 +23,18 @@ date6.setDate(date.getDate() - 6);
 export default {
     Query: {
         allDataSets: (_, args) => {
-            var startDate = args.filter.startDate ? args.filter.startDate : "2016-01-01"
-            var endDate = args.filter.endDate ? args.filter.endDate : new Date()
+            var startDate = (args.filter && args.filter.startDate) ? args.filter.startDate : "2016-01-01"
+            var endDate = (args.filter && args.filter.endDate) ? args.filter.endDate : new Date()
             return new Promise((resolve, reject) => {
                 DataSet
                 .find({$and: [
-                    {countryCode: { '$regex': new RegExp(args.filter.countryCode) }}, 
-                    {localRegion: { '$regex': new RegExp(args.filter.localRegion) }},
+                    {countryCode: { '$regex': new RegExp(args.filter && args.filter.countryCode) }}, 
+                    {localRegion: { '$regex': new RegExp(args.filter && args.filter.localRegion) }},
                     {createdAt: {$gt: startDate, $lt: endDate}},
                 ]})
+                .populate('fuelUnit')
                 .then((res, err) => {
+                    console.log('*****************************************', res)
                     if (err) {
                         reject(err)
                     }

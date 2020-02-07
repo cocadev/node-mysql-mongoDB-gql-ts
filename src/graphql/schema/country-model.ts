@@ -9,6 +9,7 @@ const countrySchema = new Schema({
     dropDups: true,
   },
   code: {
+    index: true,
     type: String,
     required: true,
     unique: true,
