@@ -13,9 +13,9 @@ const vehicleSelectonSchema = new Schema({
     depreciationPeriod: Number,
   },
   typeAorB: String,
-  vehicleTypeId: Schema.Types.ObjectId,
+  vehicleTypeId: {type: Schema.Types.ObjectId, ref: 'list'},
   description: String,
-  fuelTypeId: Schema.Types.ObjectId,
+  fuelTypeId: {type: Schema.Types.ObjectId, ref: 'list'},
   fuelPrice: Number,
   fuelConsumption: Number,
   acquisitionValue: Number,
@@ -26,7 +26,7 @@ const vehicleSelectonSchema = new Schema({
   numOfBreakdowns: Number,
   avgBreakdownCost: Number,
   roadTaxes: Number,
-  disposalMethod: Schema.Types.ObjectId,
+  disposalMethod: {type: Schema.Types.ObjectId, ref: 'list'},
   disposalValue: Number
 }, { timestamps: true, });
 

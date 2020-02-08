@@ -30,10 +30,10 @@ type DataSet {
     id: ID!
     name: String
     userId: Int
-    distanceUnit: String
+    distanceUnit: List
     fuelUnit: List
     currency: String
-    countryCode: Country
+    countryCode: String
     localRegion: String
     createdAt: String
     updatedAt: String

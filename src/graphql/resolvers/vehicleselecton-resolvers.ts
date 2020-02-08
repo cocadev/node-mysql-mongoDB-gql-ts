@@ -31,6 +31,17 @@ export default {
                         ]
                     })
                     .populate('common.datasetId')
+                    .populate('vehicleTypeId')
+                    .populate('fuelTypeId')
+                    .populate({
+                        path: 'disposalMethod',
+                        model: 'list',
+                        populate: {
+                            path: 'listTypeId',
+                            model: 'listGroup'      
+                        }
+                    })
+                    
                     .then((entries, err) => {
                         if (err) {
                             reject(err)

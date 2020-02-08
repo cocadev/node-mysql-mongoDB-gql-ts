@@ -27,19 +27,35 @@ export default {
             var endDate = (args.filter && args.filter.endDate) ? args.filter.endDate : new Date()
             return new Promise((resolve, reject) => {
                 DataSet
-                .find({$and: [
-                    {countryCode: { '$regex': new RegExp(args.filter && args.filter.countryCode) }}, 
-                    {localRegion: { '$regex': new RegExp(args.filter && args.filter.localRegion) }},
-                    {createdAt: {$gt: startDate, $lt: endDate}},
-                ]})
-                .populate('fuelUnit')
-                .then((res, err) => {
-                    console.log('*****************************************', res)
-                    if (err) {
-                        reject(err)
-                    }
-                    resolve(res)
-                })
+                    .find({$and: [
+                        {countryCode: { '$regex': new RegExp(args.filter && args.filter.countryCode) }}, 
+                        {localRegion: { '$regex': new RegExp(args.filter && args.filter.localRegion) }},
+                        {createdAt: {$gt: startDate, $lt: endDate}},
+                    ]})
+                    .find()
+                    .populate({
+                        path: 'distanceUnit',
+                        model: 'list',
+                        populate: {
+                            path: 'listTypeId',
+                            model: 'listGroup'      
+                        }
+                    })
+                    .populate({
+                        path: 'fuelUnit',
+                        model: 'list',
+                        populate: {
+                            path: 'listTypeId',
+                            model: 'listGroup'      
+                        }
+                    })
+                   
+                    .then((res, err) => {
+                        if (err) {
+                            reject(err)
+                        }
+                        resolve(res)
+                    })
             })
         },
         _allDataSetsMeta: (_, args) => {

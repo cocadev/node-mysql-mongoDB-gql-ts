@@ -1,5 +1,5 @@
 type List {
     id: ID
-    listTypeId: ID
+    listTypeId: ListGroup
     listItem: String
 }

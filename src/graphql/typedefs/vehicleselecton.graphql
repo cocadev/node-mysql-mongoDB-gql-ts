@@ -2,9 +2,9 @@ type Vehicleselecton {
     id: ID!
     common: Common
     typeAorB: String
-    vehicleTypeId: ID
+    vehicleTypeId: List
     description: String
-    fuelTypeId: ID
+    fuelTypeId: List
     fuelPrice: Float
     fuelConsumption: Int
     acquisitionValue: Int
@@ -15,7 +15,7 @@ type Vehicleselecton {
     numOfBreakdowns: Int
     avgBreakdownCost: Int
     roadTaxes: Int
-    disposalMethod: ID
+    disposalMethod: List
     disposalValue: Int
     createdAt: String
     updatedAt: String

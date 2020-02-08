@@ -10,17 +10,10 @@ const dataSetSchema = new Schema({
     type: Number,
     required: true,
   },
-  distanceUnit: {
-    type: Schema.Types.ObjectId,
-  },
-  fuelUnit: {
-    type: Schema.Types.ObjectId,
-    ref: "list",
-  },
+  distanceUnit: {type: Schema.Types.ObjectId, ref: 'list'},
+  fuelUnit: {type: Schema.Types.ObjectId, ref: 'list'},
   currency: String,
-  countryCode: {
-    type: String,
-  },
+  countryCode: { type: String, ref: 'country'},
   localRegion: String,
   createdAt: Date,
   updatedAt: Date
